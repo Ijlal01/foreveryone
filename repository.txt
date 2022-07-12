@@ -1,1 +1,18 @@
-https://github.com/okalu/CS425-SWE-202207/blob/main/fairfieldlibrarywebapi/src/main/java/edu/miu/cs/cs425/fairfieldlibrarywebapi/model/Publisher.java
+  public ModelAndView listAccounts(){
+        var m = new ModelAndView();
+        List<Account> accounts = accountService.getAccounts();
+        m.addObject("accounts",accounts);
+        Double SUM = 0.0;
+        for(Account a : accounts){
+            SUM = SUM + a.getBalance();
+        }
+        m.addObject("SUM",SUM);
+        m.setViewName("account/list");
+        return m;
+
+    }
+    
+    ------> for html 
+
+<p> liquidity position :  $<span th:text="${SUM}"></span></p>
+
